@@ -12,10 +12,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品属性管理Controller
  */
+@CrossOrigin
 @RestController
 @Api(tags = "PmsProductAttributeController", description = "商品属性管理")
 @RequestMapping("/productAttribute")
@@ -30,8 +32,10 @@ public class PmsProductAttributeController {
                           @RequestParam(value = "type") Integer type,
                           @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                           @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        //TODO 根据分类查询属性列表或参数列表
-        return new CommonResult().success(null);
+        // 根据分类查询属性列表或参数列表
+
+        Map<String,Object> productService=productAttributeService.selectProductAttributeByCategory(cid,type,pageSize,pageNum);
+        return new CommonResult().success(productService);
     }
 
     @ApiOperation("添加商品属性信息")
@@ -68,4 +72,6 @@ public class PmsProductAttributeController {
         //TODO 根据分类查询属性列表或参数列表
         return new CommonResult().success(null);
     }
+
+
 }

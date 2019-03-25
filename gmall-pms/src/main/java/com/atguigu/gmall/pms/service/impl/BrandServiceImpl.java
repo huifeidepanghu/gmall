@@ -46,11 +46,11 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
         return map;
     }
 
-    @Override
-    public Brand deleteById(Long id) {
-
-        int deleteById = baseMapper.deleteById(id);
-
-        return null;
-    }
+//    @Override
+//    public Brand deleteById(Long id) {
+//
+//        int deleteById = baseMapper.deleteById(id);
+//
+//        return null;
+//    }
 }

@@ -26,7 +26,6 @@ public class GmallSwagger2Config {
                 .apiInfo(apiInfo())
                 .enable(true);
     }
-
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("谷粒商城-后台管理系统平台接口文档")
@@ -35,6 +34,28 @@ public class GmallSwagger2Config {
                 .version("1.0")
                 .build();
     }
+
+    @Bean("商品管理模块")
+    public Docket productApis() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("商品管理模块")
+                .select()
+                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
+                .paths(PathSelectors.regex("/productCategory.*"))
+                .build()
+                .apiInfo( productInfo())
+                .enable(true);
+    }
+
+    private ApiInfo productInfo() {
+        return new ApiInfoBuilder()
+                .title("谷粒商城-后台管理系统平台接口文档")
+                .description("提供pms、oms、ums、cms、sms模块的文档")
+                .termsOfServiceUrl("http://www.atguigu.com/")
+                .version("1.0")
+                .build();
+    }
+
 
 
 }

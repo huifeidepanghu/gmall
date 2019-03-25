@@ -1,17 +1,16 @@
 package com.atguigu.gmall.admin.pms.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.atguigu.gmall.admin.pms.vo.PmsProductParam;
+import com.atguigu.gmall.to.PmsProductParam;
 import com.atguigu.gmall.admin.pms.vo.PmsProductQueryParam;
 import com.atguigu.gmall.pms.service.ProductService;
 import com.atguigu.gmall.to.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -29,9 +28,10 @@ public class PmsProductController {
 
     @ApiOperation("创建商品")
     @PostMapping(value = "/create")
-    public Object create(@RequestBody PmsProductParam productParam,
+    public Object create(@Valid @RequestBody PmsProductParam productParam,
                          BindingResult bindingResult) {
-        //TODO 查询所有一级分类及子分类
+        // 查询所有一级分类及子分类
+        productService.create(productParam);
         return new CommonResult().success(null);
 
 
@@ -56,7 +56,7 @@ public class PmsProductController {
     public Object getList(PmsProductQueryParam productQueryParam,
                           @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                           @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        //TODO 查询商品
+        // 查询商品
 
         Map<String,Object> pageInfo = productService.pageProduct(pageNum,pageSize);
 

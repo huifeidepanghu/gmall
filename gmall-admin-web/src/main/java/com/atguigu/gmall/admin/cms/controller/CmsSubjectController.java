@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * 商品专题
  */
+@CrossOrigin
 @RestController
 @Api(tags = "CmsSubjectController", description = "商品专题管理")
 @RequestMapping("/subject")
@@ -25,8 +26,9 @@ public class CmsSubjectController {
     @ApiOperation("获取全部商品专题")
     @GetMapping(value = "/listAll")
     public Object listAll() {
-        //TODO 获取全部商品专题
-        return new CommonResult().success(null);
+        // 获取全部商品专题
+        List<Subject> list =subjectService.getAllList();
+        return new CommonResult().success(list);
     }
 
     @ApiOperation(value = "根据专题名称分页获取专题")

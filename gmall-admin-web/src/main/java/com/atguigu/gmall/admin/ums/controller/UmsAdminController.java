@@ -65,8 +65,6 @@ public class UmsAdminController {
     @Reference
     private AdminService adminService;
 
-
-
     @Value("${gmall.jwt.tokenHeader}")
     private String tokenHeader;
     @Value("${gmall.jwt.tokenHead}")
